@@ -1,2 +1,4 @@
 # FourStore
-A project in the internship to create a system for a store.
+A project at my internship to create a system for a store.
+
+Developed by Tiago Felix Prudente
