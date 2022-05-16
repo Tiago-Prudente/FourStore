@@ -106,7 +106,7 @@ public class Product {
 	}
 
 	public Double getPrice() {
-		return 1.0;
+		return price;
 	}
 
 	public void setPrice(Double price) {
