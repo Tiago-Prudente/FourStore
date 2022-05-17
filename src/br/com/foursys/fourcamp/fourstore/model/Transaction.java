@@ -1,52 +1,46 @@
 package br.com.foursys.fourcamp.fourstore.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.UUID;
 
 import br.com.foursys.fourcamp.fourstore.enums.PaymentMethods;
 
 public class Transaction {
 
-	private String transactionId;
+	private UUID transactionID;
 	private PaymentMethods paymentMethod;
-	private Date dateOfTransaction;
-	private List<Product> productList = new ArrayList<Product>();
-	
-	public Transaction(String transactionId, PaymentMethods paymentMethod, Date dateOfTransaction) {
-		super();
-		this.transactionId = transactionId;
+	private Date transactionDate;
+	private Product product;
+
+	public Transaction(UUID transactionID, PaymentMethods paymentMethod, Date transactionDate, Product product) {
+		this.transactionID = UUID.randomUUID();
 		this.paymentMethod = paymentMethod;
-		this.dateOfTransaction = dateOfTransaction;
+		this.transactionDate = transactionDate;
+		this.product = product;
 	}
-	
-	public String getTransactionId() {
-		return transactionId;
+
+	public UUID getTransactionID() {
+		return transactionID;
 	}
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
-	}
+
 	public PaymentMethods getPaymentMethod() {
 		return paymentMethod;
 	}
-	public void setPaymentMethod(PaymentMethods paymentMethod) {
-		this.paymentMethod = paymentMethod;
-	}
-	public Date getDateOfTransaction() {
-		return dateOfTransaction;
-	}
-	public void setDateOfTransaction(Date dateOfTransaction) {
-		this.dateOfTransaction = dateOfTransaction;
+
+	public Date getTransactionDate() {
+		return transactionDate;
 	}
 
-	public List<Product> getProductList() {
-		return productList;
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
 	}
 
-	public void setProductList(List<Product> productList) {
-		this.productList = productList;
+	public Product getProduct() {
+		return product;
 	}
-	
-	
-	
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 }
