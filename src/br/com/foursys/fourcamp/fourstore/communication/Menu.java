@@ -29,10 +29,12 @@ public class Menu {
 
 	public static void finishedWithSucess() {
 		System.out.println("Tudo certo! Solicitação OK!");
+		optionsMenu();
 	}
 
 	public static void finishedWithError() {
-		System.err.println("Algo inesperado aconteceu, ERRO!");		
+		System.err.println("Algo inesperado aconteceu, ERRO!");
+		optionsMenu();
 	}
 
 }

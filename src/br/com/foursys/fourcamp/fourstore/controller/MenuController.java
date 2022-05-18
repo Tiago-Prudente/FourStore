@@ -34,14 +34,18 @@ public class MenuController {
 					sku = sc.nextInt();
 					System.out.println("Digite a quantidade");
 					quantity = sc.nextInt();
-					Boolean returnInfo = ProductController.updateQuantities(sku, quantity);
+					
+					ProductController productC = new ProductController();
+					Boolean returnInfo = productC.updateQuantities(sku, quantity);
 					if(returnInfo) {
 						Menu.finishedWithSucess();
 					} else {
 						Menu.finishedWithError();
 					}
 				} else if(input == 2) {
-					
+					String name, description, type, size, color, category, departament; 
+					Integer sku, quantity;
+					Double price;
 				} else {
 					System.err.println("Erro, valor errado. Tente novamente."); 
 				}

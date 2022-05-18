@@ -5,8 +5,7 @@ import br.com.foursys.fourcamp.fourstore.model.Product;
 
 public class ProductService {
 
-	public static boolean update(Integer sku, Integer quantity) {
-		Product product = new Product(sku, quantity);
+	public static boolean update(Product product) {
 		ProductData productData = new ProductData();
 		
 		if(productData.save(product)) {
