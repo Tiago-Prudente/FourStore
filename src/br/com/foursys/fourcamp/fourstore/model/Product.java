@@ -7,10 +7,19 @@ public class Product {
 	private String size;
 	private String color;
 	private String category;
-	private String departament;
+	private String department;
 	private Integer sku;
 	private Integer quantity;
 	private Double price;
+
+	
+	
+	@Override
+	public String toString() {
+		return "Product [name=" + name + ", description=" + description + ", type=" + type + ", size=" + size
+				+ ", color=" + color + ", category=" + category + ", department=" + department + ", sku=" + sku
+				+ ", quantity=" + quantity + ", price=" + price + "]\n";
+	}
 
 	public Product(Integer sku, Integer quantity) {
 		super();
@@ -19,7 +28,7 @@ public class Product {
 	}
 
 	public Product(String name, String description, String type, String size, String color, String category,
-			String departament, Integer sku, Integer quantity, Double price) {
+			String department, Integer sku, Integer quantity, Double price) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -27,7 +36,7 @@ public class Product {
 		this.size = size;
 		this.color = color;
 		this.category = category;
-		this.departament = departament;
+		this.department = department;
 		this.sku = sku;
 		this.quantity = quantity;
 		this.price = price;
@@ -89,12 +98,12 @@ public class Product {
 		this.category = category;
 	}
 
-	public String getDepartament() {
-		return departament;
+	public String getDepartment() {
+		return department;
 	}
 
-	public void setDepartament(String departament) {
-		this.departament = departament;
+	public void setDeprtament(String department) {
+		this.department = department;
 	}
 
 	public Integer getQuantity() {

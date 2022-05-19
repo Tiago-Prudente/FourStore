@@ -11,7 +11,7 @@ public class Menu {
 		
 	}
 
-	private static void optionsMenu() {
+	public static void optionsMenu() {
 		System.out.println("Digite a opção desejada.");
 		System.out.println("1 - Vender um produto");
 		System.out.println("2 - Conferir estoque");

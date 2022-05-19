@@ -22,7 +22,12 @@ public class MenuController {
 				break;
 
 			case 2: // Conferir estoque
-
+				System.out.println("O estoque atual é: ");
+				ProductController productGet = new ProductController();
+				String stockOutput = productGet.getList();
+				
+				System.out.println(stockOutput);
+				Menu.optionsMenu();
 				break;
 
 			case 3: // Cadastrar ou atualizar produtos
@@ -43,9 +48,41 @@ public class MenuController {
 						Menu.finishedWithError();
 					}
 				} else if(input == 2) {
-					String name, description, type, size, color, category, departament; 
+					String name, description, type, size, color, category, department; 
 					Integer sku, quantity;
 					Double price;
+					sc.nextLine();
+					System.out.println("Digite o nome do produto");
+					name = sc.nextLine();
+					System.out.println("Digite a descrição do produto");
+					description = sc.nextLine();
+					System.out.println("Digite o tipo do produto");
+					type = sc.nextLine();
+					System.out.println("Digite o tamanho do produto");
+					size = sc.nextLine();
+					System.out.println("Digite a cor do produto");
+					color = sc.nextLine();
+					System.out.println("Digite a categoria");
+					category = sc.nextLine();
+					System.out.println("Digite o departamento");
+					department = sc.nextLine();
+					System.out.println("Digite o Sku");
+					sku = sc.nextInt();
+					System.out.println("Digite a quantidade inicial");
+					quantity = sc.nextInt();
+					System.out.println("Digite o preço");
+					price = sc.nextDouble();
+					
+					ProductController productC = new ProductController();
+					Boolean returnInfo = productC.createProduct(name, description, type, size, color, category, department, sku, quantity, price);
+					if(returnInfo) {
+						Menu.finishedWithSucess();
+					} else {
+						Menu.finishedWithError();
+					}
+					
+					
+					
 				} else {
 					System.err.println("Erro, valor errado. Tente novamente."); 
 				}
@@ -60,7 +97,7 @@ public class MenuController {
 				throw new IllegalArgumentException("Opção invalida, tente novamente");
 			}
 
-		} while (option != -1);
+		} while (option != 0);
 		
 		sc.close();
 	}
