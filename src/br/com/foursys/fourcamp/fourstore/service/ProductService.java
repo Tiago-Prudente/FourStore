@@ -28,7 +28,7 @@ public class ProductService {
 		output = ProductData.returnStock();
 		
 		if(output.equals("")) {
-			return "Erro, não achei nenhum item";
+			return "Erro, não achei nenhum item no estoque";
 		}
 	
 		return output;
