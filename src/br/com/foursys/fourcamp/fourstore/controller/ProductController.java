@@ -34,4 +34,10 @@ public class ProductController {
 		return output;
 	}
 
+	public void sellItems(String itemName, String itemQuantity) {
+		
+		System.out.println(itemName + itemQuantity);
+		
+	}
+
 }
