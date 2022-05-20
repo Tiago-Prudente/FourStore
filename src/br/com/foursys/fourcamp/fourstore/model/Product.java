@@ -1,60 +1,101 @@
 package br.com.foursys.fourcamp.fourstore.model;
 
+import br.com.foursys.fourcamp.fourstore.enums.CategoryEnum;
+import br.com.foursys.fourcamp.fourstore.enums.ColorEnum;
+import br.com.foursys.fourcamp.fourstore.enums.DepartmentEnum;
+import br.com.foursys.fourcamp.fourstore.enums.NameEnum;
+import br.com.foursys.fourcamp.fourstore.enums.SizeEnum;
+import br.com.foursys.fourcamp.fourstore.enums.TypeEnum;
+
 public class Product {
-	private String name;
+	private NameEnum name;
 	private String description;
-	private String type;
-	private String size;
-	private String color;
-	private String category;
-	private String department;
-	private Integer sku;
+	private TypeEnum type;
+	private SizeEnum size;
+	private ColorEnum color;
+	private CategoryEnum category;
+	private DepartmentEnum department;
+	private String sku;
 	private Integer quantity;
 	private Double price;
 
-	
-	
 	@Override
 	public String toString() {
-		return "Product [name=" + name + ", description=" + description + ", type=" + type + ", size=" + size
-				+ ", color=" + color + ", category=" + category + ", department=" + department + ", sku=" + sku
-				+ ", quantity=" + quantity + ", price=" + price + "]\n";
+		return "\nProduto nome: " + name.getName() + "\nDescrição: " + description + "\nTipo: " + type.getType()
+				+ "\nTamanho: " + size.getSize() + "\nCor: " + color.getColor() + "\nCategoria: "
+				+ category.getCategory() + "\nDepartamento: " + department.getDepartment() + "\nSku: " + sku
+				+ "\nQuantidade: " + quantity + "\nPreço: " + price + "\n";
 	}
 
-	public Product(Integer sku, Integer quantity) {
+	public Product(String sku, Integer quantity) {
 		super();
 		this.sku = sku;
 		this.quantity = quantity;
+		skuParse(sku);
 	}
 
-	public Product(String name, String description, String type, String size, String color, String category,
-			String department, Integer sku, Integer quantity, Double price) {
+	public Product(String description, String sku, Integer quantity, Double price) {
 		super();
-		this.name = name;
 		this.description = description;
-		this.type = type;
-		this.size = size;
-		this.color = color;
-		this.category = category;
-		this.department = department;
 		this.sku = sku;
 		this.quantity = quantity;
 		this.price = price;
+		skuParse(sku);
 	}
 
-	public String getName() {
+	public NameEnum getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(NameEnum name) {
 		this.name = name;
 	}
 
-	public Integer getSku() {
+	public TypeEnum getType() {
+		return type;
+	}
+
+	public void setType(TypeEnum type) {
+		this.type = type;
+	}
+
+	public SizeEnum getSize() {
+		return size;
+	}
+
+	public void setSize(SizeEnum size) {
+		this.size = size;
+	}
+
+	public ColorEnum getColor() {
+		return color;
+	}
+
+	public void setColor(ColorEnum color) {
+		this.color = color;
+	}
+
+	public CategoryEnum getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEnum category) {
+		this.category = category;
+	}
+
+	public DepartmentEnum getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(DepartmentEnum department) {
+		this.department = department;
+	}
+
+	public String getSku() {
 		return sku;
 	}
 
-	public void setSku(Integer sku) {
+	public void setSku(String sku) {
 		this.sku = sku;
 	}
 
@@ -64,46 +105,6 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDeprtament(String department) {
-		this.department = department;
 	}
 
 	public Integer getQuantity() {
@@ -122,4 +123,29 @@ public class Product {
 		this.price = price;
 	}
 
+	private void skuParse(String skuToParse) {
+		String name, size, category, type, department, color;
+
+		name = skuToParse.substring(0, 3);
+		size = skuToParse.substring(3, 6);
+		category = skuToParse.substring(6, 9);
+		type = skuToParse.substring(9, 12);
+		department = skuToParse.substring(12, 15);
+		color = skuToParse.substring(15, 18);
+
+		NameEnum nameEnum = NameEnum.valueOf(name);
+		SizeEnum sizeEnum = SizeEnum.valueOf(size);
+		CategoryEnum categoryEnum = CategoryEnum.valueOf(category);
+		TypeEnum typeEnum = TypeEnum.valueOf(type);
+		DepartmentEnum departmentEnum = DepartmentEnum.valueOf(department);
+		ColorEnum colorEnum = ColorEnum.valueOf(color);
+
+		this.name = nameEnum;
+		this.size = sizeEnum;
+		this.category = categoryEnum;
+		this.type = typeEnum;
+		this.department = departmentEnum;
+		this.color = colorEnum;
+
+	}
 }

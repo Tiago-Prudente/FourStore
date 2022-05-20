@@ -5,29 +5,54 @@ import java.util.ArrayList;
 import br.com.foursys.fourcamp.fourstore.model.Product;
 
 public class ProductData {
-	static ArrayList<Product> productList = new ArrayList<Product>();
+	private static ArrayList<Product> productList = new ArrayList<Product>();
 
-	public static boolean save(Product product) {
+	public boolean create(Product product) {
+		productList.add(product);
+		return true;
+	}
+
+	public String returnStock() {
+		String output = "";
+
+		for (Product product : productList) {
+			output += product.toString();
+		}
+
+		return output;
+	}
+
+	public boolean save(Product product) {
 		Boolean foundInList = false;
 		foundInList = iterateList(product);
 		if (foundInList) {
-			updateListAddStock(product);
+			for (int i = 0; i < productList.size(); i++) {
+				productList.get(i).setQuantity(productList.get(i).getQuantity() + product.getQuantity());
+			}
 		}
 
 		return foundInList;
 	}
 
-	private static void updateListAddStock(Product product) {
-		for (int i = 0; i < productList.size(); i++) {
-			if(iterateList(product)){
-				productList.get(i).setQuantity(productList.get(i).getQuantity() + product.getQuantity());	
+	public String delete(Product product) {
+		String result = "Erro, não encontrei o produto no estoque";
+		Boolean foundInList = false;
+		foundInList = iterateList(product);
+		if (foundInList) {
+			for (int i = 0; i < productList.size(); i++) {
+				if (productList.get(i).getQuantity() - product.getQuantity() >= 0) {
+					productList.get(i).setQuantity(productList.get(i).getQuantity() - product.getQuantity());
+					result = "Item removido";
+				} else {
+					result = "Erro, quantidade para remoção maior do que tem no estoque";
+				}
 			}
-		
 		}
 
+		return result;
 	}
 
-	private static boolean iterateList(Product product) {
+	private boolean iterateList(Product product) {
 		for (Product item : productList) {
 			if (item.getSku().equals(product.getSku())) {
 				return true;
@@ -36,19 +61,15 @@ public class ProductData {
 		return false;
 	}
 
-	public static boolean create(Product product) {
-		productList.add(product);
-		return true;
-	}
-
-	public static String returnStock() {
-		String output = "";
-		
+	public Product returnSingleItem(Product transactionProd) {
 		for (Product product : productList) {
-			output += product.toString();
+			if(product.getSku().equals(transactionProd.getSku())) {
+				if(delete(product).equals("Item removido"))
+				product.setQuantity(transactionProd.getQuantity());
+				return product;
+			}
 		}
-		
-		return output;
+		return null;
 	}
 
 }

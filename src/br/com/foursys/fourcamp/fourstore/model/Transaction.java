@@ -1,30 +1,56 @@
 package br.com.foursys.fourcamp.fourstore.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-import br.com.foursys.fourcamp.fourstore.enums.PaymentMethods;
+import br.com.foursys.fourcamp.fourstore.enums.PaymentMethodsEnum;
 
 public class Transaction {
 
 	private UUID transactionID;
-	private PaymentMethods paymentMethod;
+	private PaymentMethodsEnum paymentMethod;
 	private Date transactionDate;
-	private Product product;
+	private ArrayList<Product> product;
+	private String cpf;
 
-	public Transaction(UUID transactionID, PaymentMethods paymentMethod, Date transactionDate, Product product) {
+	@Override
+	public String toString() {
+		return "Transação ID: " + transactionID 
+				+ "\nMétodo de Pagamento: " + paymentMethod 
+				+ "\nData da transação: " + transactionDate 
+				+ "\nProduto: " + product 
+				+ "\nCpf Comprador: " + cpf 
+				+ "\n";
+	}
+
+	public Transaction(String paymentMethod, Date transactionDate, ArrayList<Product> product) {
 		this.transactionID = UUID.randomUUID();
-		this.paymentMethod = paymentMethod;
+		this.paymentMethod = PaymentMethodsEnum.valueOf(paymentMethod);
 		this.transactionDate = transactionDate;
 		this.product = product;
+		this.cpf = "0";
+	}
+
+	public Transaction(String paymentMethod, Date transactionDate, ArrayList<Product> product,	String cpf) {
+		super();
+		this.transactionID = UUID.randomUUID();
+		this.paymentMethod = PaymentMethodsEnum.valueOf(paymentMethod);
+		this.transactionDate = transactionDate;
+		this.product = product;
+		this.cpf = cpf;
 	}
 
 	public UUID getTransactionID() {
 		return transactionID;
 	}
 
-	public PaymentMethods getPaymentMethod() {
+	public PaymentMethodsEnum getPaymentMethod() {
 		return paymentMethod;
+	}
+	
+	public void setPaymentMethod(PaymentMethodsEnum paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 
 	public Date getTransactionDate() {
@@ -35,12 +61,20 @@ public class Transaction {
 		this.transactionDate = transactionDate;
 	}
 
-	public Product getProduct() {
+	public ArrayList<Product> getProduct() {
 		return product;
 	}
 
-	public void setProduct(Product product) {
+	public void setProduct(ArrayList<Product> product) {
 		this.product = product;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 }
