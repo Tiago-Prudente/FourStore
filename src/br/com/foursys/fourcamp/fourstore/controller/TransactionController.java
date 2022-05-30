@@ -20,13 +20,15 @@ public class TransactionController {
 
 		String confirmMethod = confirmPayMethod(payMethod);
 
-		if (cpfCheck) {
-			Transaction transaction = new Transaction(confirmMethod, payDetails, dateOfTransaction, shoppingCart,
-					cpfBuyer);
-			saleResult = transactionS.saleTransaction(transaction);
-		} else {
-			Transaction transaction = new Transaction(confirmMethod, payDetails, dateOfTransaction, shoppingCart);
-			saleResult = transactionS.saleTransaction(transaction);
+		if(shoppingCart != null) {
+			if (cpfCheck) {
+				Transaction transaction = new Transaction(confirmMethod, payDetails, dateOfTransaction, shoppingCart,
+						cpfBuyer);
+				saleResult = transactionS.saleTransaction(transaction);
+			} else {
+				Transaction transaction = new Transaction(confirmMethod, payDetails, dateOfTransaction, shoppingCart);
+				saleResult = transactionS.saleTransaction(transaction);
+			}
 		}
 
 		return saleResult;

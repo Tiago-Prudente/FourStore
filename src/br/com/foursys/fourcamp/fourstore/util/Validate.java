@@ -4,9 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validate {
-	private static final String CPF = "\\[0-9]{11}";
-	private static final String CNPJ = "\\[0-9]{14}";
-	private static final String CARD = "\\[0-9]{16}";
+	private static final String CPF = "([0-9]{11})";
+	private static final String CNPJ = "([0-9]{14})";
+	private static final String CARD = "([0-9]{16})";
 	private static final String EMAIL = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
 
 	public boolean checkCpf(String cpf) {

@@ -148,7 +148,7 @@ public class Product {
 			this.department = departmentEnum;
 			this.color = colorEnum;
 		} catch (Exception e) {
-			System.err.println("ERROR, SKU INVALIDO" + e);
+			System.err.println("ERROR, SKU INVALIDO " + e);
 		}
 
 	}
