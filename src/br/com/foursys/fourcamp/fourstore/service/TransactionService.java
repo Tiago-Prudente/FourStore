@@ -11,7 +11,7 @@ public class TransactionService {
 	TransactionData transactionD = new TransactionData();
 
 	public String saleTransaction(Transaction transaction) {
-		String result = "Ok";
+		String result = "";
 		ArrayList<Product> productList = new ArrayList<Product>();
 
 		for (int i = 0; i < transaction.getProduct().size(); i++) {
@@ -20,7 +20,12 @@ public class TransactionService {
 			transaction.getProduct().add(i, productList.get(i));
 		}
 
-		transactionD.create(transaction);
+		result = transactionD.create(transaction);
+		
+		if(result == null) {
+			result = "ERRO - TRANSAÇÃO INVALIDA";
+		}
+		
 		return result;
 	}
 
