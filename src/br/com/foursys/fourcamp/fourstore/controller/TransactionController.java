@@ -10,7 +10,7 @@ import br.com.foursys.fourcamp.fourstore.service.TransactionService;
 public class TransactionController {
 	TransactionService transactionS = new TransactionService();
 
-	public String sellItemsMoney(String payMethod, ArrayList<Product> shoppingCart, String cpfBuyer) {
+	public String sellItems(String payMethod, ArrayList<Product> shoppingCart, String cpfBuyer, String payDetails) {
 		String saleResult = "Algo inesperado aconteceu, tente novamente";
 		Date dateOfTransaction = new Date();
 
@@ -19,49 +19,16 @@ public class TransactionController {
 		String confirmMethod = confirmPayMethod(payMethod);
 
 		if (cpfCheck) {
-			Transaction transaction = new Transaction(confirmMethod, dateOfTransaction, shoppingCart, cpfBuyer);
+			Transaction transaction = new Transaction(confirmMethod, payDetails, dateOfTransaction, shoppingCart,
+					cpfBuyer);
 			saleResult = transactionS.saleTransaction(transaction);
 		} else {
-			Transaction transaction = new Transaction(confirmMethod, dateOfTransaction, shoppingCart);
+			Transaction transaction = new Transaction(confirmMethod, payDetails, dateOfTransaction, shoppingCart);
 			saleResult = transactionS.saleTransaction(transaction);
 		}
 
 		return saleResult;
 
-	}
-
-	public String sellItemsCard(String payMethod, ArrayList<Product> shoppingCart, String cpfBuyer, String card) {
-		String saleResult = "Algo inesperado aconteceu, tente novamente";
-		Date dateOfTransaction = new Date();
-
-		Boolean cpfCheck = cpfBuyer.length() == 11;
-
-		String confirmMethod = confirmPayMethod(payMethod);
-		if (cpfCheck) {
-			Transaction transaction = new Transaction(confirmMethod, dateOfTransaction, shoppingCart, cpfBuyer);
-			saleResult = transactionS.saleTransaction(transaction);
-		} else {
-			Transaction transaction = new Transaction(confirmMethod, dateOfTransaction, shoppingCart);
-			saleResult = transactionS.saleTransaction(transaction);
-		}
-		return saleResult;
-	}
-
-	public String sellItemsPix(String payMethod, ArrayList<Product> shoppingCart, String cpfBuyer, String pix) {
-		String saleResult = "Algo inesperado aconteceu, tente novamente";
-		Date dateOfTransaction = new Date();
-
-		Boolean cpfCheck = cpfBuyer.length() == 11;
-
-		String confirmMethod = confirmPayMethod(payMethod);
-		if (cpfCheck) {
-			Transaction transaction = new Transaction(confirmMethod, dateOfTransaction, shoppingCart, cpfBuyer);
-			saleResult = transactionS.saleTransaction(transaction);
-		} else {
-			Transaction transaction = new Transaction(confirmMethod, dateOfTransaction, shoppingCart);
-			saleResult = transactionS.saleTransaction(transaction);
-		}
-		return saleResult;
 	}
 
 	private String confirmPayMethod(String payMethod) {
@@ -88,7 +55,7 @@ public class TransactionController {
 	public String getAllSales() {
 		String result = "";
 		result = transactionS.getFromDBAllSales();
-		
+
 		return result;
 	}
 

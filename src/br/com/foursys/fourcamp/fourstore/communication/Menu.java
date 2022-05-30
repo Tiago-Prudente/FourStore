@@ -79,15 +79,15 @@ public class Menu {
 					System.out.println("Nome do titular do cartão");
 					String nameCardOwner = sc.nextLine();
 					String card = transactionC.createCard(cardNumber, CVV, monthYearExpireDate, nameCardOwner);
-					saleResult = transactionC.sellItemsCard(payMethod, shoppingCart, cpfBuyer, card);
+					saleResult = transactionC.sellItems(payMethod, shoppingCart, cpfBuyer, card);
 
 				} else if (payMethod.equals("4")) {
 					System.out.println("Informe a chave pix");
 					String pixKey = sc.nextLine();
-					saleResult = transactionC.sellItemsPix(payMethod, shoppingCart, cpfBuyer, pixKey);
+					saleResult = transactionC.sellItems(payMethod, shoppingCart, cpfBuyer, pixKey);
 
 				} else {
-					saleResult = transactionC.sellItemsMoney(payMethod, shoppingCart, cpfBuyer);
+					saleResult = transactionC.sellItems(payMethod, shoppingCart, cpfBuyer, "Dinheiro");
 
 				}
 

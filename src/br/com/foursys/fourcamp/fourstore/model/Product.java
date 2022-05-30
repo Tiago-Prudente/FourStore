@@ -124,28 +124,32 @@ public class Product {
 	}
 
 	private void skuParse(String skuToParse) {
-		String name, size, category, type, department, color;
+		try {
+			String name, size, category, type, department, color;
 
-		name = skuToParse.substring(0, 3);
-		size = skuToParse.substring(3, 6);
-		category = skuToParse.substring(6, 9);
-		type = skuToParse.substring(9, 12);
-		department = skuToParse.substring(12, 15);
-		color = skuToParse.substring(15, 18);
+			name = skuToParse.substring(0, 3);
+			size = skuToParse.substring(3, 6);
+			category = skuToParse.substring(6, 9);
+			type = skuToParse.substring(9, 12);
+			department = skuToParse.substring(12, 15);
+			color = skuToParse.substring(15, 18);
 
-		NameEnum nameEnum = NameEnum.valueOf(name);
-		SizeEnum sizeEnum = SizeEnum.valueOf(size);
-		CategoryEnum categoryEnum = CategoryEnum.valueOf(category);
-		TypeEnum typeEnum = TypeEnum.valueOf(type);
-		DepartmentEnum departmentEnum = DepartmentEnum.valueOf(department);
-		ColorEnum colorEnum = ColorEnum.valueOf(color);
+			NameEnum nameEnum = NameEnum.valueOf(name);
+			SizeEnum sizeEnum = SizeEnum.valueOf(size);
+			CategoryEnum categoryEnum = CategoryEnum.valueOf(category);
+			TypeEnum typeEnum = TypeEnum.valueOf(type);
+			DepartmentEnum departmentEnum = DepartmentEnum.valueOf(department);
+			ColorEnum colorEnum = ColorEnum.valueOf(color);
 
-		this.name = nameEnum;
-		this.size = sizeEnum;
-		this.category = categoryEnum;
-		this.type = typeEnum;
-		this.department = departmentEnum;
-		this.color = colorEnum;
+			this.name = nameEnum;
+			this.size = sizeEnum;
+			this.category = categoryEnum;
+			this.type = typeEnum;
+			this.department = departmentEnum;
+			this.color = colorEnum;
+		} catch (Exception e) {
+			System.err.println("ERROR, SKU INVALIDO" + e);
+		}
 
 	}
 }

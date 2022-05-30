@@ -8,17 +8,9 @@ import br.com.foursys.fourcamp.fourstore.service.ProductService;
 public class ProductController {
 	ProductService productS = new ProductService();
 
-	public void sellItems(String itemName, String itemQuantity) {
-
-		System.out.println(itemName + itemQuantity);
-
-	}
-
 	public String getList() {
 		String output = "";
-
 		output = productS.getList();
-
 		return output;
 	}
 
