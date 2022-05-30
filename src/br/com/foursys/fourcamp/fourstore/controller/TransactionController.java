@@ -6,15 +6,17 @@ import java.util.Date;
 import br.com.foursys.fourcamp.fourstore.model.Product;
 import br.com.foursys.fourcamp.fourstore.model.Transaction;
 import br.com.foursys.fourcamp.fourstore.service.TransactionService;
+import br.com.foursys.fourcamp.fourstore.util.Validate;
 
 public class TransactionController {
 	TransactionService transactionS = new TransactionService();
+	Validate validator = new Validate();
 
 	public String sellItems(String payMethod, ArrayList<Product> shoppingCart, String cpfBuyer, String payDetails) {
 		String saleResult = "Algo inesperado aconteceu, tente novamente";
 		Date dateOfTransaction = new Date();
 
-		Boolean cpfCheck = cpfBuyer.length() == 11;
+		Boolean cpfCheck = validator.checkCpf(cpfBuyer);
 
 		String confirmMethod = confirmPayMethod(payMethod);
 
@@ -47,8 +49,13 @@ public class TransactionController {
 
 	public String createCard(String cardNumber, String CVV, String monthYearExpireDate, String nameCardOwner) {
 		String card = "";
+		if(validator.checkCard(cardNumber)) {
 		card = "Número do cartão: " + cardNumber + "/nCVV: " + CVV + "/nmês/ano vencimento: " + monthYearExpireDate
 				+ "/nNome do titular do cartão: " + nameCardOwner;
+		return card;
+	} else {
+		card = "ERRO - CARTÃO COM A MENOS OU MAIS DE 16 DÍGITOS";
+	}
 		return card;
 	}
 

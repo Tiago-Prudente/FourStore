@@ -22,7 +22,7 @@ public class Transaction {
 				+ "\nDetalhes do pagamento: " + paymentMethodDetails
 				+ "\nData da transação: " + transactionDate 
 				+ "\nProduto: " + product 
-				+ "\nCpf Comprador: " + cpf 
+				+ "\nCPF ou CNPJ Comprador: " + cpf 
 				+ "\n";
 	}
 
@@ -32,7 +32,7 @@ public class Transaction {
 		this.paymentMethodDetails = paymentMethodDetails;
 		this.transactionDate = transactionDate;
 		this.product = product;
-		this.cpf = "CPF NÃO INFORMADO";
+		this.cpf = "CPF OU CNPJ NÃO INFORMADO";
 	}
 
 	public Transaction(String paymentMethod, String paymentMethodDetails, Date transactionDate, ArrayList<Product> product,	String cpf) {

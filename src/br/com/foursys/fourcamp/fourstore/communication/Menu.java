@@ -52,7 +52,6 @@ public class Menu {
 			case 4: // Histórico de vendas do dia
 				salesHistory();
 
-
 			case 99:
 				overloadSystem();
 
@@ -63,10 +62,6 @@ public class Menu {
 			sc.close();
 		} while (option != 0);
 	}
-
-
-
-
 
 	private void buyItems() {
 		ArrayList<Product> shoppingCart = new ArrayList<Product>();
@@ -92,7 +87,7 @@ public class Menu {
 		System.out.println("4 - Pix");
 		String payMethod = sc.nextLine();
 
-		System.out.println("Informe o CPF sem pontos ou traços, caso não queira digite 0");
+		System.out.println("Informe o CPF ou CNPJ sem pontos ou traços, caso não queira digite 0");
 		String cpfBuyer = "0";
 		cpfBuyer = sc.nextLine();
 
@@ -106,6 +101,10 @@ public class Menu {
 			System.out.println("Nome do titular do cartão");
 			String nameCardOwner = sc.nextLine();
 			String card = transactionC.createCard(cardNumber, CVV, monthYearExpireDate, nameCardOwner);
+			if(card.equals("ERRO - CARTÃO COM A MENOS OU MAIS DE 16 DÍGITOS")) {
+				System.out.println(card);
+				return;
+			}
 			saleResult = transactionC.sellItems(payMethod, shoppingCart, cpfBuyer, card);
 
 		} else if (payMethod.equals("4")) {
@@ -130,7 +129,7 @@ public class Menu {
 		System.out.println(stockOutput);
 		optionsMenu();
 	}
-	
+
 	private void addOrUpdateProducts() {
 		checkUpdateOrAddProduct();
 		input = sc.nextInt();
@@ -161,16 +160,16 @@ public class Menu {
 			System.out.println(returnInfo);
 			optionsMenu();
 		}
-		
+
 	}
-	
+
 	private void salesHistory() {
 		String salesResult = "";
 		salesResult = transactionC.getAllSales();
 		System.out.println(salesResult);
-		optionsMenu();		
+		optionsMenu();
 	}
-	
+
 	public void checkUpdateOrAddProduct() {
 		System.out.println("Você deseja atualizar ou cadastrar um novo produto?");
 		System.out.println("1 - Atualizar quantidades");
