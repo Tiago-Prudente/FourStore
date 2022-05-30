@@ -24,7 +24,7 @@ public class Product {
 		return "\nProduto nome: " + name.getName() + "\nDescrição: " + description + "\nTipo: " + type.getType()
 				+ "\nTamanho: " + size.getSize() + "\nCor: " + color.getColor() + "\nCategoria: "
 				+ category.getCategory() + "\nDepartamento: " + department.getDepartment() + "\nSku: " + sku
-				+ "\nQuantidade: " + quantity + "\nPreço: " + price + "\n";
+				+ "\nQuantidade: " + quantity + "\nPreço: R$" + price + "\n";
 	}
 
 	public Product(String sku, Integer quantity) {

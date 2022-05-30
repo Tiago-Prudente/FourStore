@@ -29,6 +29,10 @@ public class TransactionService {
 	public String getFromDBAllSales() {
 		String result = "";
 		
+		if (result.equals("")) {
+			result = "Não foi feita nenhuma venda ainda";
+		}
+		
 		result = transactionD.saleHistory();
 		return result;
 	}

@@ -17,7 +17,7 @@ public class Transaction {
 	@Override
 	public String toString() {
 		return "Transação ID: " + transactionID 
-				+ "\nMétodo de Pagamento: " + paymentMethod 
+				+ "\nMétodo de Pagamento: " + paymentMethod.getDescription() 
 				+ "\nData da transação: " + transactionDate 
 				+ "\nProduto: " + product 
 				+ "\nCpf Comprador: " + cpf 
