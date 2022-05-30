@@ -134,6 +134,7 @@ public class Menu {
 		checkUpdateOrAddProduct();
 		input = sc.nextInt();
 		if (input == 1) {
+			sc.nextLine();
 			System.out.println("Digite o sku do produto");
 			String sku = sc.nextLine();
 			System.out.println("Digite a quantidade");
