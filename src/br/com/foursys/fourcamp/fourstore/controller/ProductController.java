@@ -22,22 +22,15 @@ public class ProductController {
 		return output;
 	}
 
-	public Boolean updateQuantities(String sku, Integer quantity) {
+	public String updateQuantities(String sku, Integer quantity) {
 		Product product = new Product(sku, quantity);
-		if (productS.updateProduct(product)) {
-			return true;
-		}
-
-		return false;
+		return productS.updateProduct(product);
 	}
 
-	public Boolean createProduct(String description, String sku, Integer quantity, Double price) {
+	public String createProduct(String description, String sku, Integer quantity, Double price) {
 		Product product = new Product(description, sku, quantity, price);
-		if (productS.createProduct(product)) {
-			return true;
-		}
-
-		return false;
+		String result = productS.createProduct(product);
+		return result;
 	}
 
 	public String overloadSystem() {

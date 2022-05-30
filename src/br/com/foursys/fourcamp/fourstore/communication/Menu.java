@@ -64,11 +64,11 @@ public class Menu {
 				System.out.println("3 - Cartão de crédito");
 				System.out.println("4 - Pix");
 				String payMethod = sc.nextLine();
-				
+
 				System.out.println("Informe o CPF sem pontos ou traços, caso não queira digite 0");
 				String cpfBuyer = "0";
 				cpfBuyer = sc.nextLine();
-				
+
 				if (payMethod.equals("2") || payMethod.equals("3")) {
 					System.out.println("Digite Número do cartão de crédito");
 					String cardNumber = sc.nextLine();
@@ -85,12 +85,11 @@ public class Menu {
 					System.out.println("Informe a chave pix");
 					String pixKey = sc.nextLine();
 					saleResult = transactionC.sellItemsPix(payMethod, shoppingCart, cpfBuyer, pixKey);
-					
+
 				} else {
 					saleResult = transactionC.sellItemsMoney(payMethod, shoppingCart, cpfBuyer);
-					
-				}
 
+				}
 
 				System.out.println(saleResult);
 
@@ -114,12 +113,9 @@ public class Menu {
 					System.out.println("Digite a quantidade");
 					Integer quantity = sc.nextInt();
 
-					Boolean returnInfo = productC.updateQuantities(sku, quantity);
-					if (returnInfo) {
-						Menu.finishedWithSucess();
-					} else {
-						Menu.finishedWithError();
-					}
+					String returnInfo = productC.updateQuantities(sku, quantity);
+					System.out.println(returnInfo);
+					optionsMenu();
 				} else if (input == 2) {
 					String description, sku;
 					Integer quantity;
@@ -134,17 +130,11 @@ public class Menu {
 					System.out.println("Digite o preço");
 					price = sc.nextDouble();
 
-					Boolean returnInfo = productC.createProduct(description, sku, quantity, price);
-					if (returnInfo) {
-						Menu.finishedWithSucess();
-					} else {
-						Menu.finishedWithError();
-					}
-
-				} else {
-					System.err.println("Erro, valor errado. Tente novamente.");
+					String returnInfo = productC.createProduct(description, sku, quantity, price);
+					System.out.println(returnInfo);
+					optionsMenu();
+					break;
 				}
-				break;
 
 			case 4: // Histórico de vendas do dia
 				String salesResult = "";
@@ -184,5 +174,5 @@ public class Menu {
 		System.err.println("Algo inesperado aconteceu, ERRO!");
 		optionsMenu();
 	}
-	
+
 }

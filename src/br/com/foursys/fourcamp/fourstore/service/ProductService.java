@@ -8,22 +8,20 @@ import br.com.foursys.fourcamp.fourstore.model.Product;
 public class ProductService {
 	ProductData productD = new ProductData();
 
-	public boolean updateProduct(Product product) {
-
-		if (productD.save(product)) {
-			return true;
+	public String createProduct(Product product) {
+		if (productD.create(product)) {
+			return "Produto cadastrado com sucesso";
 		}
-
-		return false;
+		return "ERRO - PRODUTO JÁ EXISTENTE.";
 	}
 
-	public boolean createProduct(Product product) {
+	public String updateProduct(Product product) {
 
-		if (productD.create(product)) {
-			return true;
+		if (productD.save(product)) {
+			return "Produto salvo com sucesso.";
 		}
 
-		return false;
+		return "ERRO - O PRODUTO NÃO EXISTE NO ESTOQUE, FAVOR CADASTRAR.";
 	}
 
 	public String getList() {
@@ -36,15 +34,13 @@ public class ProductService {
 
 		return output;
 	}
-	
-	public ArrayList<Product> getSingleItem(ArrayList<Product> productList) {;
-	ArrayList<Product> pL = new ArrayList<Product>();
-	
+
+	public ArrayList<Product> getSingleItem(ArrayList<Product> productList) {
+		ArrayList<Product> pL = new ArrayList<Product>();
+
 		for (Product product : productList) {
 			pL.add(productD.returnSingleItem(product));
-			
 		}
-
 		return pL;
 	}
 

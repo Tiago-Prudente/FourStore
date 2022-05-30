@@ -8,8 +8,12 @@ public class ProductData {
 	private static ArrayList<Product> productList = new ArrayList<Product>();
 
 	public boolean create(Product product) {
-		productList.add(product);
-		return true;
+		if (!iterateList(product)) {
+			productList.add(product);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public String returnStock() {
@@ -18,7 +22,6 @@ public class ProductData {
 		for (Product product : productList) {
 			output += product.toString();
 		}
-
 		return output;
 	}
 
@@ -63,9 +66,9 @@ public class ProductData {
 
 	public Product returnSingleItem(Product transactionProd) {
 		for (Product product : productList) {
-			if(product.getSku().equals(transactionProd.getSku())) {
-				if(delete(product).equals("Item removido"))
-				product.setQuantity(transactionProd.getQuantity());
+			if (product.getSku().equals(transactionProd.getSku())) {
+				if (delete(product).equals("Item removido"))
+					product.setQuantity(transactionProd.getQuantity());
 				return product;
 			}
 		}
