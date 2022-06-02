@@ -15,10 +15,19 @@ public class Menu {
 	Integer input;
 
 	public void initializeSystem() {
-
+		String user, password;
 		System.out.println("Bem vindo ao sistema da FourStore");
-		optionsMenu();
-
+		System.out.println("Digite o login: ");
+		user = sc.nextLine();
+		System.out.println("Digite a senha: ");
+		password = sc.nextLine();
+		
+		if(user.equals("admin") && password.equals("******")) {
+			optionsMenu();
+		} else {
+			System.out.println("Tente novamente;");
+			initializeSystem();
+		}
 	}
 
 	public void optionsMenu() {
